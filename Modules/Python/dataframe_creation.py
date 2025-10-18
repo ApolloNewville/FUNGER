@@ -16,5 +16,9 @@ for file in path.glob('*.json'):
         with open(file, 'r',encoding='utf-8') as f:
             global_dictionary[file.stem] = json.load(f)
 
-common_keys = set.intersection(*(set(inner.keys()) for inner in global_dictionary.values()))
-print(common_keys)
+# So, I have all json files here
+
+dfs = {}
+
+for name, data in global_dictionary.items():
+    dfs[name] = pd.json_normalize(data).dropna(how = 'all', axis = 1).replace('\n','',regex=True)
