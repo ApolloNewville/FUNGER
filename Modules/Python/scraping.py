@@ -11,15 +11,4 @@ if page.status_code == 200:
 else: 
     print(f"There were any trounble with the conection to the server! {page.status_code}")
 
-soup = BeautifulSoup(page.text, 'html.parser')
-
-table = soup.find('table', class_='article-table')
-
-headers = [th.text.strip() for th in table.find_all('th','td')]
-
-rows = []
-for tr in table.find_all('tr')[1:]:
-    cells = [td.text.strip() for td in tr.find_all('td')]
-    if cells:
-        rows.append(cells)
-df = pd.DataFrame(rows, columns=headers)
+soup = BeautifulSoup(page, 'html-parser')

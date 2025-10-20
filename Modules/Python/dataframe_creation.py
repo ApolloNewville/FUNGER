@@ -21,4 +21,4 @@ for file in path.glob('*.json'):
 dfs = {}
 
 for name, data in global_dictionary.items():
-    dfs[name] = pd.json_normalize(data).dropna(how = 'all', axis = 1).replace('\n','',regex=True)
+    dfs[name] = pd.json_normalize(data).dropna(how = 'all', axis = 0).replace('\n','',regex=True)
