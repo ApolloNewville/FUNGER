@@ -1,7 +1,8 @@
 import pandas as pd
 import json
 from pathlib import Path
-
+import numpy as np
+# Creation of the path which it is the folder
 path = Path(r'Data')
 
 # The names of the files of interest
@@ -17,8 +18,8 @@ for file in path.glob('*.json'):
             global_dictionary[file.stem] = json.load(f)
 
 # So, I have all json files here
-
 dfs = {}
-
 for name, data in global_dictionary.items():
-    dfs[name] = pd.json_normalize(data).dropna(how = 'all', axis = 0).replace('\n','',regex=True)
+    dfs[name] = pd.json_normalize(data).replace('',np.nan).dropna(how = 'any', axis = 0)
+
+print(dfs.keys())
