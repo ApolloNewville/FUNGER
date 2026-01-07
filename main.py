@@ -12,3 +12,7 @@ dfs = dfs.copy()
 # Cleaning step
 for key, values in dfs.items():
     dfs[key] = values.dropna(how='all')
+
+# Printing
+dfs['Weapons'] = dfs['Weapons'].dropna(subset=['description'])
+print(dfs['Weapons']['description'])
