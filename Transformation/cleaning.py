@@ -17,7 +17,7 @@ def df_cleaning(
     # Removing '' values from data frames
     df = df.replace(to_replace='',value=np.nan).replace(to_replace=r'[\n\t]|\\n|\\t',value=' ',regex=True)
     df = df.infer_objects(copy=False)
-    df = df.dropna(how=dropna_how,axis='index')
+    df = df.dropna(how=dropna_how,axis='index').dropna(subset=['name'])
     return df
 
 def str_cleaning(df: pd.DataFrame) -> pd.DataFrame:
